@@ -1,0 +1,31 @@
+@model LibraryManagementSystem.Models.ViewModels.BorrowModel
+
+@{
+    ViewData["Title"] = "Borrow Book";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+    <h2 class="mb-4">Borrow Book</h2>
+
+    <form asp-action="BorrowBook" method="post">
+        <div class="mb-3">
+            <label asp-for="CustomerId" class="form-label">Select Customer</label>
+            <select asp-for="CustomerId" asp-items="Model.CustomerList" class="form-select"></select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BookId" class="form-label">Select Book</label>
+            <select asp-for="BookId" asp-items="Model.BookList" class="form-select"></select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BorrowDate" class="form-label">Borrow Date</label>
+            <input asp-for="BorrowDate" class="form-control" type="datetime-local" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Borrow</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

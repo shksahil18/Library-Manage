@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-4">Welcome to the Library Management System</h1>
+    <p class="lead">Manage books, authors, customers, and borrowing records efficiently.</p>
+    <a class="btn btn-primary btn-lg mt-4" href="/Account/Register">Get Started</a>
+
+    <!-- View Borrow Records Button -->
+    <a class="btn btn-outline-dark btn-lg mt-4" asp-controller="Borrow" asp-action="ViewBorrowBook">
+        View Borrow Records
+    </a>
+
+</div>

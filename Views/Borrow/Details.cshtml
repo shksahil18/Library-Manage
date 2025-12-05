@@ -1,0 +1,48 @@
+@model LibraryManagementSystem.Models.Borrow
+
+@{
+    ViewData["Title"] = "Borrow Details";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4">
+        <div class="card-header bg-primary text-white fs-4">Borrow Details</div>
+        <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Customer Name</dt>
+            <dd class="col-sm-9">@Model.Customer?.Name</dd>
+
+            <dt class="col-sm-3">Book Title</dt>
+            <dd class="col-sm-9">@Model.Book?.Title</dd>
+
+            <dt class="col-sm-3">Borrow Date</dt>
+            <dd class="col-sm-9">
+                @{
+                    var isTime = TimeZoneInfo.ConvertTimeFromUtc(Model.BorrowDateTime.ToUniversalTime(), 
+                        TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+                    @isTime.ToString("dd-MM-yyyy hh:mm tt")    
+                }
+            </dd>
+
+            <dt class="col-sm-3">Return Date</dt>
+            <dd class="col-sm-9">
+                @if (Model.ReturnDate != null)
+                    {
+                        var istReturn = TimeZoneInfo.ConvertTimeFromUtc(
+                            Model.ReturnDate.Value.ToUniversalTime(),
+                            TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+                        @istReturn.ToString("dd-MM-yyyy hh:mm tt")
+                    }
+                    else
+                    {
+                        <span class="text-muted">Not yet returned</span>
+                    }
+            </dd>
+
+        </dl>
+
+        <a asp-action="ViewBorrowBook" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

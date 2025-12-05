@@ -1,0 +1,59 @@
+@model IEnumerable<LibraryManagementSystem.Models.Book>
+@{
+    ViewData["Title"] = "Book";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Available Books</h2>
+
+    <div class="mb-3">
+        <a asp-controller="Book" asp-action="Create" class="btn btn-success">Create New Book</a>
+    </div>
+
+    <table class="table table-bordered table-striped shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>PublishedYear</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Description</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.ISBN</td>
+                    <td>@book.PublishedYear</td>
+                    <td>@book.Genre</td>
+                    <td>@book.Year</td>
+                    <td>@book.Description</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-sm btn-info">View</a>
+                            <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    td, th {
+        vertical-align: middle;
+    }
+    .btn {
+        margin: 2px;
+    }
+</style>
